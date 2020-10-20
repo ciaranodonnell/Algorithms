@@ -13,17 +13,24 @@ namespace Algorithms
 
 		public static void MyMain(string[] args)
 		{
-			ContinuousMedians m = new ContinuousMedians();
-			int continousMedian = 0;
-			for (int x = 0; x < 100; x++)
+			
+			int caseCount = int.Parse(Console.ReadLine());
+			List<int> means = new List<int>();
+
+			for (int x = 0; x < caseCount; x++)
 			{
-				var i = int.Parse(Console.ReadLine());
-				var median = m.Add(i);
-				continousMedian += median;
-				Console.Write(continousMedian);
-				Console.WriteLine("  (" + median + " | " + string.Join(' ', m.values) + ")");
+				ContinuousMedians m = new ContinuousMedians();
+				int continousMedian = 0;
+				var arrayLength = Console.ReadLine();
+				foreach (var i in Console.ReadLine().Split(" ").Select(s => int.Parse(s)))
+				{
+					var median = m.Add(i);
+					continousMedian += median;
+				}
+				means.Add(continousMedian);
 			}
 
+			means.ForEach(i => Console.WriteLine(i));
 		}
 
 
@@ -55,7 +62,7 @@ namespace Algorithms
 			{
 				moveMedian = true;
 				return ((medianNode.Value + medianNode.Next.Value) / 2);
-				
+
 			}
 
 
